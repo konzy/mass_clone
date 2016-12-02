@@ -69,11 +69,7 @@ else
 	cd ${identifier}
 
 	while read -r url; do
-	    name=$(echo "$url" | grep -o "$identifier[^\.]*" | cut "-c$lengthOfIdentifier-")
-		mkdir ${name}
-		cd ${name}
 		git clone ${url}
-		cd ..
 	done <<< "$justURLs"
 fi
 
