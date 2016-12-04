@@ -1,8 +1,9 @@
 #!/bin/sh
 
-# github api references
+# github api reference
 # https://developer.github.com/v3/
 
+# Written By: Brian Konzman
 
 
 if [[ $# -ne 4 ]];
