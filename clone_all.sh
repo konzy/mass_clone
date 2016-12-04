@@ -66,8 +66,8 @@ else
 	((lengthOfIdentifier=${#identifier}+2))
 
 	# Make subdirectory and move to it
-	mkdir $identifier
-	cd ${identifier}
+	mkdir ../${identifier}
+	cd ../${identifier}
 
 	while read -r url; do
 		git clone ${url}

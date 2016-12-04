@@ -4,19 +4,17 @@
 # It requires the folder name and a message
 
 
-if [[ $# -ne 2 ]];
+if [[ $# -ne 1 ]];
 	then
-	echo "This script requires 2 parameters."
-	echo "First is the folder name the assignments are in"
-	echo "Second is the message"
+	echo "This script requires 1 parameter."
+	echo "1. The folder name the assignments are in"
 else
 	assignment=$1
-	message=$2
-	for f in ${assignment}/*
+	for f in ../${assignment}/*
 		do
 			cd $f
 			git add -A
-			git commit -m \""$message"\"
+			git commit -m "Graded"
 			git push origin master
 			echo $f
 			cd ..
