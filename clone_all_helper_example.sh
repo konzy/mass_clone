@@ -14,12 +14,12 @@ if [[ $# -ne 1 ]];
 	echo "1. Name of unique identifier(assignment)"
 else
 
-	$assignment=$1
+	assignment=$1
 
 	#edit these variables to your defaults
-	$organization="Organization"
-	$username="username"
-	$protocol="ssh"
+	organization="Organization"
+	username="username"
+	protocol="ssh"
 
-	"./clone_all.sh $organization $assignment $username $protocol"
+	./clone_all.sh ${organization} ${assignment} ${username} ${protocol}
 fi
