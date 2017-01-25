@@ -66,7 +66,7 @@ else
 	((lengthOfIdentifier=${#identifier}+2))
 
 	# Make subdirectory and move to it
-	mkdir ../${identifier}
+	mkdir -p ../${identifier}
 	cd ../${identifier}
 
 	while read -r url; do
