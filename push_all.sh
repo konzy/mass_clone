@@ -1,4 +1,4 @@
-#! /bin/sh -vx
+#! /bin/sh
 # This file is for pushing graded assignments to GitHub Classroom repositories
 # It will add all new files and commit them with a given message
 # It requires the folder name and a message
