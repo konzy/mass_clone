@@ -10,11 +10,13 @@ if [[ $# -ne 1 ]];
 	echo "1. The folder name the assignments are in"
 else
 	assignment=$1
+	date=`date +%m-%d-%Y`
+	time=`date +%H:%M:%S`
 	for f in ../${assignment}/*
 		do
 			cd $f
 			git add -A
-			git commit -m "Graded"
+			git commit -m "Graded ${date} ${time}"
 			git push origin master
 			echo $f
 			cd ..

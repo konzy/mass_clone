@@ -41,7 +41,6 @@ else
 
 	# Get the first page of repo results (100 entries)
 	rawJSON=$(curl --user  "$githubUsername:$githubPassword" "https://api.github.com/orgs/$organization/repos?per_page=100" -v)
-
 	# Get the line that tells if this is the last page
 	linkTag=$(echo "$rawJSON" | grep "< Link: <https:" )
 	page=2
@@ -70,12 +69,12 @@ else
 	cd ../${identifier}
 
 	while read -r url; do
-		git clone ${url}
+		dir=$(basename ${url})
+		dir=${dir//.git}
+		if [ -d ${dir} ]; then
+			git -C ${dir} pull
+		else
+			git clone ${url}
+		fi
 	done <<< "$justURLs"
 fi
-
-
-
-
-
-
