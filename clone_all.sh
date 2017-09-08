@@ -42,20 +42,19 @@ else
 	# Get the first page of repo results (100 entries)
 	rawJSON=$(curl --user  "$githubUsername:$githubPassword" "https://api.github.com/orgs/$organization/repos?per_page=100" -v)
 	# Get the line that tells if this is the last page
-	linkTag=$(echo "$rawJSON" | grep "< Link: <https:" )
+    numRepos=$(echo "$rawJSON" | grep -o "full_name" | wc -l)
 	page=2
 
 	# While we have not seen the last page
-	while [[ $linkTag == *">; rel=\"last\""* ]]; do
+	while [[ "$numRepos" -eq "100" ]]; do
 		# Get next page
 		tempJSON=$(curl --user  "$githubUsername:$githubPassword" "https://api.github.com/orgs/$organization/repos?per_page=100&page=$page" -v)
-		linkTag=$(echo "$tempJSON" | grep "< Link: <https:" )
+		numRepos=$(echo "$rawJSON" | grep -o "full_name" | wc -l)
 
 		#concatenate tempJSON on to rawJSON
 		rawJSON=$rawJSON$tempJSON
 		((page++))
 	done
-
 	# grep full lines that have the same tag identifier
 	fullLines=$(echo "$rawJSON" | grep "$tag" )
 
