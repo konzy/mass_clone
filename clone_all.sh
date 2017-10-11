@@ -49,7 +49,7 @@ else
 	while [[ "$numRepos" -eq "100" ]]; do
 		# Get next page
 		tempJSON=$(curl --user  "$githubUsername:$githubPassword" "https://api.github.com/orgs/$organization/repos?per_page=100&page=$page" -v)
-		numRepos=$(echo "$rawJSON" | grep -o "full_name" | wc -l)
+		numRepos=$(echo "$tempJSON" | grep -o "full_name" | wc -l)
 
 		#concatenate tempJSON on to rawJSON
 		rawJSON=$rawJSON$tempJSON
